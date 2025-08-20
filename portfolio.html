@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendawy Wedding Planner | تخطيط حفلات الزفاف</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #a78bfa;
+            --secondary-color: #d8b4fe;
+            --accent-color: #3370c2;
+            --dark-color: #1a103d;
+            --light-color: #f5f3ff;
+            --text-color: #e9d5ff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- إزالة أي underline من الروابط/الأيقونات بشكل شامل --- */
+        a, a:visited, a:focus, a:active, a:hover {
+            text-decoration: none !important;
+        }
+        /* إذا فضّلنا استهداف أيقونات محددة أيضاً */
+        .social-links a, .social-links a i {
+            text-decoration: none !important;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #000d1e 0%, #141a32 40%, #1f2a44 70%, #1b1b2f 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            align-items: center;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: -100px;
+            z-index: 1000;
+            transition: var(--transition);
+            align-items: center;
+            opacity: 0;
+        }
+
+        header.visible {
+            top: 0;
+            opacity: 1;
+            align-items: center;
+        }
+
+        header.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+            .header-container {
+    display: flex;
+    justify-content: center; /* أفقي */
+    align-items: center;     /* رأسي */
+}
+            .logo {
+                position: static;
+                transform: none;
+                margin: 5p;
+                height: auto;
+            }
+
+        .logo img {
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .header-logo {
+            height: 40px !important;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* NOTE: تم إزالة زر التبديل للوضع النهاري وCSS الخاص به بناءً على طلب المستخدم */
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            height: 150px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color : var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light-color);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-btn {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--light-color);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+            text-decoration: none !important;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Hearts and Flowers Background */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            /* الآن مفعلة — لكن العناصر نفسها ستنشأ خارج الشاشة (أسفل) */
+            display: block;
+            pointer-events: none;
+        }
+
+        .heart, .flower {
+            position: absolute;
+            opacity: 0.9;
+            pointer-events: none;
+            will-change: transform, opacity;
+            font-size: 20px;
+        }
+
+        .heart {
+            color: #ff6b6b;
+        }
+
+        .flower {
+            color: #f8c291;
+            font-size: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-logo {
+                height: 100px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+
+            /* تعديل: على الشاشات الصغيرة نعيد اللوجو للوضع الطبيعي (عشان ما يحصل تداخل) */
+            .header-container {
+    display: flex;
+    justify-content: center; /* أفقي */
+    align-items: center;     /* رأسي */
+}
+            .logo {
+                position: static;
+                transform: none;
+                margin: 5p;
+                height: auto;
+            }
+        }
+
+        /* Animations */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes logoTransition {
+            0% {
+                transform: scale(1.5) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5) translateY(-80px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hearts and Flowers Background -->
+    <div class="hearts-background" id="heartsBackground"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/logolight.png" alt="Hendawy Wedding Planner" class="header-logo" id="headerLogo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <img src="assets/logolight.png" alt="Hendawy Wedding Planner" class="hero-logo" id="heroLogo">
+            <p> سيتم عرض شغلنا هنا قريبا</p>
+            <a href="index.html#services" class="btn">اكتشف خدماتنا</a>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/logolight.png" alt="Hendawy Wedding Planner">
+                    </div>
+                    <p>نحن نسعى جاهدين لتحقيق أحلامكم ومناسباتكم بأعلى مستويات الجودة والإبداع، لأن سعادتكم هي نجاحنا.</p>
+
+                </div>
+
+                <div class="footer-contact">
+                    <h3 class="footer-heading">اتواصل معانا دلوقتي!</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1YCrdsgHSF/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/_hendawy12_?igsh=eXYwaDE0eXlrbXN3" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/201271063281" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Hendawy Wedding Planner. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/201271063281" class="whatsapp-float" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Create hearts and flowers for background
+        function createHeartsAndFlowers() {
+            const container = document.getElementById('heartsBackground');
+            const symbols = ['❤', '❀', '✿', '💮', '🌸', '💐', '🌹'];
+
+            // clear any existing children (safe-guard)
+            container.innerHTML = '';
+
+            for (let i = 0; i < 30; i++) {
+                const symbol = document.createElement('div');
+                symbol.classList.add(Math.random() > 0.5 ? 'heart' : 'flower');
+                symbol.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                // Start position: BELOW the viewport (100% - 130%) to avoid any top flash
+                symbol.style.left = Math.random() * 100 + '%';
+                symbol.style.top = (100 + Math.random() * 30) + '%'; // starts below visible area
+                symbol.style.fontSize = (14 + Math.random() * 18) + 'px';
+                
+                // Random animation delay and duration for natural effect
+                const delay = Math.random() * 6; // 0 - 6s
+                const duration = 8 + Math.random() * 10; // 8 - 18s
+                
+                // Use the floatUp keyframes defined in CSS. Repeat infinitely.
+                // animation: name duration timing-function delay iteration-count fill-mode
+                symbol.style.animation = `floatUp ${duration}s linear ${delay}s infinite forwards`;
+                
+                // Slight rotation randomization
+                symbol.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                container.appendChild(symbol);
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const heroSection = document.getElementById('home');
+            const heroHeight = heroSection.offsetHeight;
+            
+            if (window.scrollY > heroHeight * 0.6) {
+                header.classList.add('visible');
+            } else {
+                header.classList.remove('visible');
+            }
+            
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', function() {
+            // الآن نعيد تشغيل إضافة القلوب والزهور ولكن بداية ظهورها ستكون من تحت (مش فوق)
+            createHeartsAndFlowers();
+        });
+    </script>
+</body>
+</html>
